@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %} Game {% endblock %}
+{% block title %} ClickGame {% endblock %}
 
 
 {% block page_content %}
@@ -21,5 +21,6 @@
         <div>9</div>
     </div>
 
-    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <a href="/logout">로그아웃</a>
+    <script src="{{ url_for('static', filename='js/game.js') }}"></script>    
 {% endblock %}

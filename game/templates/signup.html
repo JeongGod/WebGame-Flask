@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %} ClickGame {% endblock %}
+{% block script %}
+<script>
+    function regist(){
+        userId = document.querySelector("#userId").value
+        userPw = document.querySelector("#userPw").value
+        userPwCheck = document.querySelector("#userPwCheck").value
+        userName = document.querySelector("#userName").value
+        if(userPw !== userPwCheck){
+            alert("패스워드와 패스워드 확인이 같아야 합니다.")
+            return
+        }
+
+        $.ajax({
+            url: 'signup',
+            type: 'post',
+            data: {
+                "userId" : userId,
+                "userPw" : userPw,
+                "userName" : userName,
+            },
+            success: function(res){
+                if(res['result'] === 'success'){
+                    alert("회원가입을 축하합니다!")
+                    window.location.href = '/login'
+                }
+            }
+        });
+
+    }
+</script>
+{% endblock %}
+
+{% block page_content %}
+    <label for="userId">아이디</label>
+    <input type="text" id="userId" name="userId">
+    
+    <button onclick="alert('아직 안만들었다 이새끼야~')">아이디 중복 확인</button>
+
+    <label for="userPw">패스워드</label>
+    <input type="password" id="userPw" name="userPw">
+
+    <label for="userPwCheck">패스워드 확인</label>
+    <input type="password" id="userPwCheck" name="userPwCheck">
+
+    <label for="userName">이름</label>
+    <input type="text" id="userName" name="userName">
+
+    <button onclick=regist()>회원가입하기</button>
+{% endblock %}
